@@ -1,0 +1,21 @@
+{
+  "name": "nib-four-field-verification",
+  "version": "0.3.0",
+  "description": "NIB, Representative Identity, NPWP, and Business-Name Verification Platform with Blockchain Evidence & Output Hashing",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node test/verify_all_cases.js",
+    "dev": "node --watch src/server.js"
+  },
+  "keywords": [
+    "nib",
+    "oss",
+    "verification",
+    "blockchain",
+    "cryptographic-hash",
+    "sha256"
+  ],
+  "author": "Solanascope Extremax Team",
+  "license": "ISC"
+}

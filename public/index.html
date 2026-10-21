@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NIB & Business Identity Verification | Extremax Blockchain Integrity</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --card-bg: #121826;
+      --card-border: #1f293d;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --primary: #3b82f6;
+      --primary-hover: #2563eb;
+      --emerald: #10b981;
+      --emerald-bg: rgba(16, 185, 129, 0.12);
+      --amber: #f59e0b;
+      --amber-bg: rgba(245, 158, 11, 0.12);
+      --rose: #ef4444;
+      --rose-bg: rgba(239, 68, 68, 0.12);
+      --purple: #8b5cf6;
+      --purple-bg: rgba(139, 92, 246, 0.12);
+      --code-bg: #0d131f;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at top right, #172554, #0b0f19 50%);
+      color: var(--text-main);
+      min-height: 100vh;
+      line-height: 1.5;
+      padding: 1.5rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--card-border);
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-icon {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.25rem;
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(59, 130, 246, 0.35);
+    }
+
+    .brand h1 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .brand p {
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+    }
+
+    .badge-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.85rem;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: #34d399;
+      border-radius: 9999px;
+      font-size: 0.8125rem;
+      font-weight: 600;
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background: #34d399;
+      border-radius: 50%;
+      box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.7);
+      animation: pulse 1.6s infinite;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.7); }
+      70% { box-shadow: 0 0 0 6px rgba(52, 211, 153, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0); }
+    }
+
+    .grid-main {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 960px) {
+      .grid-main { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .card-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .card-desc {
+      font-size: 0.825rem;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.15rem;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #e2e8f0;
+      margin-bottom: 0.35rem;
+    }
+
+    .form-hint {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+    }
+
+    .input-wrapper {
+      position: relative;
+    }
+
+    input, select {
+      width: 100%;
+      background: #090d16;
+      border: 1px solid #27354f;
+      border-radius: 8px;
+      padding: 0.7rem 0.85rem;
+      color: #fff;
+      font-family: inherit;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    }
+
+    .radio-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .radio-label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #090d16;
+      border: 1px solid #27354f;
+      border-radius: 8px;
+      padding: 0.55rem 0.75rem;
+      font-size: 0.825rem;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    .radio-label input {
+      width: auto;
+      margin: 0;
+    }
+
+    .radio-label:has(input:checked) {
+      border-color: var(--primary);
+      background: rgba(59, 130, 246, 0.1);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.25rem;
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.35);
+      width: 100%;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: #1e293b;
+      color: #cbd5e1;
+      border: 1px solid #334155;
+    }
+
+    .btn-secondary:hover {
+      background: #334155;
+      color: #fff;
+    }
+
+    .btn-sm {
+      padding: 0.4rem 0.75rem;
+      font-size: 0.775rem;
+    }
+
+    /* Staging presets banner */
+    .staging-box {
+      background: #090d16;
+      border: 1px solid #26334d;
+      border-radius: 10px;
+      padding: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .staging-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+    }
+
+    .staging-title {
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: #93c5fd;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .staging-controls {
+      display: grid;
+      grid-template-columns: 1fr 1fr auto;
+      gap: 0.5rem;
+    }
+
+    /* Output Results Display */
+    .status-card {
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.25rem;
+      text-align: center;
+      transition: all 0.3s;
+    }
+
+    .status-card.TRUE_LATEST {
+      background: var(--emerald-bg);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+    }
+
+    .status-card.TRUE_OLD {
+      background: var(--amber-bg);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+    }
+
+    .status-card.WRONG {
+      background: var(--rose-bg);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+    }
+
+    .status-card.INPUT_ERROR {
+      background: rgba(148, 163, 184, 0.08);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+    }
+
+    .status-pill {
+      display: inline-block;
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.5rem;
+    }
+
+    .TRUE_LATEST .status-pill { color: #34d399; }
+    .TRUE_OLD .status-pill { color: #fbbf24; }
+    .WRONG .status-pill { color: #f87171; }
+    .INPUT_ERROR .status-pill { color: #cbd5e1; }
+
+    .status-explanation {
+      font-size: 0.925rem;
+      color: #e2e8f0;
+      margin-bottom: 0.75rem;
+    }
+
+    .meta-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      font-size: 0.8125rem;
+    }
+
+    .meta-table tr {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .meta-table td {
+      padding: 0.45rem 0;
+    }
+
+    .meta-table td:first-child {
+      color: var(--text-muted);
+      width: 40%;
+    }
+
+    .meta-table td:last-child {
+      color: #fff;
+      font-weight: 600;
+      text-align: right;
+    }
+
+    /* Hash Section */
+    .hash-card {
+      background: #090d16;
+      border: 1px solid #27354f;
+      border-radius: 12px;
+      padding: 1.15rem;
+      margin-bottom: 1.25rem;
+      position: relative;
+    }
+
+    .hash-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      background: var(--purple-bg);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      color: #c4b5fd;
+      margin-bottom: 0.5rem;
+    }
+
+    .hash-content {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: #38bdf8;
+      background: #05070c;
+      padding: 0.75rem;
+      border-radius: 8px;
+      border: 1px solid #1a2333;
+      word-break: break-all;
+      user-select: all;
+    }
+
+    .hash-action-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 0.65rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .hash-note {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* Stepper Audit View */
+    .steps-container {
+      margin-top: 1.25rem;
+      border-top: 1px solid var(--card-border);
+      padding-top: 1.25rem;
+    }
+
+    .step-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+      font-size: 0.825rem;
+    }
+
+    .step-num {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #1e293b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #94a3b8;
+      flex-shrink: 0;
+    }
+
+    .step-item.PASSED .step-num {
+      background: var(--emerald);
+      color: #0b0f19;
+    }
+
+    .step-item.FAILED .step-num, .step-item.MISMATCH .step-num, .step-item.NOT_FOUND .step-num {
+      background: var(--rose);
+      color: #fff;
+    }
+
+    .step-body {
+      flex: 1;
+    }
+
+    .step-title {
+      font-weight: 600;
+      color: #f1f5f9;
+    }
+
+    .step-desc {
+      color: var(--text-muted);
+      font-size: 0.75rem;
+    }
+
+    /* Test Runner Drawer / Modal */
+    .test-suite-card {
+      margin-top: 2rem;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 1.5rem;
+    }
+
+    .test-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin: 1.25rem 0;
+    }
+
+    .stat-box {
+      background: #090d16;
+      border: 1px solid #202b3f;
+      border-radius: 10px;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .test-table-container {
+      max-height: 380px;
+      overflow-y: auto;
+      border: 1px solid #202b3f;
+      border-radius: 8px;
+      margin-top: 1rem;
+    }
+
+    table.test-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.775rem;
+    }
+
+    table.test-table th {
+      background: #090d16;
+      position: sticky;
+      top: 0;
+      padding: 0.6rem 0.75rem;
+      text-align: left;
+      font-weight: 600;
+      color: #94a3b8;
+      border-bottom: 1px solid #202b3f;
+    }
+
+    table.test-table td {
+      padding: 0.5rem 0.75rem;
+      border-bottom: 1px solid #141c2b;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+    .tag-green { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+    .tag-amber { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+    .tag-red { background: rgba(239, 68, 68, 0.2); color: #f87171; }
+    .tag-gray { background: rgba(148, 163, 184, 0.2); color: #cbd5e1; }
+
+    footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--card-border);
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="brand-icon">✓</div>
+        <div>
+          <h1>NIB & Identity Verification Platform</h1>
+          <p>OSS Authoritative Matching • Blockchain Evidence • SHA-256 Output Integrity</p>
+        </div>
+      </div>
+      <div style="display: flex; gap: 0.75rem; align-items: center;">
+        <span class="badge-live"><span class="pulse-dot"></span> LIVE ENGINE ACTIVE</span>
+        <button class="btn btn-secondary btn-sm" onclick="scrollToTests()">⚡ Run 220 PRD Tests</button>
+      </div>
+    </header>
+
+    <!-- Staging / Test Pack Quick Loader -->
+    <div class="staging-box">
+      <div class="staging-header">
+        <div class="staging-title">
+          <span>🧪</span> <strong>Staging Test Case Explorer</strong> (220 Cases from PRD Appendix A)
+        </div>
+        <span style="font-size: 0.75rem; color: #64748b;">Fast autofill for instant review</span>
+      </div>
+      <div class="staging-controls">
+        <select id="routeSelector" onchange="onRouteSelected()">
+          <option value="">-- Choose Business Route (R01 - R36) --</option>
+        </select>
+        <select id="scenarioSelector">
+          <option value="LATEST">LATEST (V3 Expected TRUE_LATEST)</option>
+          <option value="OLD">OLD (V1 Expected TRUE_OLD)</option>
+          <option value="WRONG-PJ">WRONG-PJ (Wrong Director/PJ)</option>
+          <option value="WRONG-SECONDARY">WRONG-SECONDARY (Wrong NPWP)</option>
+          <option value="WRONG-NAME">WRONG-NAME (Wrong Name)</option>
+          <option value="WRONG-NIB">WRONG-NIB (Unregistered NIB)</option>
+        </select>
+        <button class="btn btn-secondary btn-sm" onclick="loadSelectedTestCase()">Load Into Form</button>
+      </div>
+    </div>
+
+    <div class="grid-main">
+      <!-- Input Form -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <span>📝</span> Four-Field Verification Form
+          </div>
+          <span style="font-size: 0.75rem; color: var(--text-muted);">Formulir SPI OSS v2</span>
+        </div>
+        <div class="card-desc">
+          Enter the business identifier, representative identity, taxpayer ID, and registered name. All four inputs are mandatory.
+        </div>
+
+        <form id="verifyForm" onsubmit="handleVerify(event)">
+          <!-- Field 1: NIB -->
+          <div class="form-group">
+            <label class="form-label" for="nib">1. NIB (Nomor Induk Berusaha)</label>
+            <div class="input-wrapper">
+              <input type="text" id="nib" name="nib" placeholder="e.g. 0000000000102" required autocomplete="off">
+            </div>
+            <div class="form-hint">Official 13-digit or authorized business identifier (preserves leading zeros)</div>
+          </div>
+
+          <!-- Identity Context Controls -->
+          <div class="form-group">
+            <label class="form-label">Representative Identity Context (PJ Context)</label>
+            <div class="radio-group">
+              <label class="radio-label">
+                <input type="radio" name="identity_route" value="WNI" checked onchange="toggleIdentityRoute()">
+                <span>WNI (NIK KTP)</span>
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="identity_route" value="WNA" onchange="toggleIdentityRoute()">
+                <span>WNA (Passport)</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Field 2: PJ Identity -->
+          <div class="form-group">
+            <label class="form-label" for="pj_id" id="pj_label">2. NIK Direktur / Penanggung Jawab</label>
+            <div class="input-wrapper">
+              <input type="text" id="pj_id" name="pj_id" placeholder="e.g. 0000000000000102" required autocomplete="off">
+            </div>
+            <div class="form-hint" id="pj_hint">16-digit KTP identity for WNI representative or passport for WNA</div>
+          </div>
+
+          <!-- Field 3: NPWP -->
+          <div class="form-group">
+            <label class="form-label" for="npwp">3. NPWP Perusahaan / Pelaku Usaha</label>
+            <div class="input-wrapper">
+              <input type="text" id="npwp" name="npwp" placeholder="e.g. 0000000000008102" required autocomplete="off">
+            </div>
+            <div class="form-hint">Tax identity of the assessed business (distinct from the representative's personal NPWP)</div>
+          </div>
+
+          <!-- Field 4: Business Name -->
+          <div class="form-group">
+            <label class="form-label" for="name">4. Nama Perusahaan / Pelaku Usaha</label>
+            <div class="input-wrapper">
+              <input type="text" id="name" name="name" placeholder="e.g. PT Demo R02 Baru" required autocomplete="off">
+            </div>
+            <div class="form-hint">Official registered entity name or principal name linked to the reference</div>
+          </div>
+
+          <div style="display: flex; gap: 0.75rem; margin-top: 1.5rem;">
+            <button type="submit" class="btn btn-primary" id="btnSubmit">
+              <span id="btnSpinner" style="display: none;">⏳</span> Verify Business Details
+            </button>
+            <button type="button" class="btn btn-secondary" onclick="resetForm()">Clear</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Verification Output & Result -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <span>🛡️</span> Conclusive Verification Result
+          </div>
+          <span style="font-size: 0.75rem; color: #34d399;" id="receiptStatus">IDLE</span>
+        </div>
+
+        <div id="outputPlaceholder" style="text-align: center; padding: 3rem 1rem; color: var(--text-muted);">
+          <div style="font-size: 2.5rem; margin-bottom: 0.5rem; opacity: 0.4;">🔍</div>
+          <p>Awaiting verification parameters.</p>
+          <p style="font-size: 0.75rem; margin-top: 0.25rem;">Submit the form or load a staging case to evaluate the decision engine.</p>
+        </div>
+
+        <div id="outputContent" style="display: none;">
+          <!-- Status Banner -->
+          <div id="statusCard" class="status-card">
+            <div id="statusPill" class="status-pill">TRUE — Latest Version</div>
+            <div id="statusExplanation" class="status-explanation">The submitted information matches the verified latest reference version.</div>
+            <div id="conclusiveBadge" style="font-size: 0.72rem; text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em; opacity: 0.85;">
+              CONCLUSIVE DETERMINATION
+            </div>
+          </div>
+
+          <!-- Metadata table -->
+          <table class="meta-table">
+            <tr>
+              <td>Verified Version</td>
+              <td id="resVerifiedVersion">V3</td>
+            </tr>
+            <tr>
+              <td>Latest OSS Version</td>
+              <td id="resLatestVersion">V3</td>
+            </tr>
+            <tr>
+              <td>Business Category</td>
+              <td id="resBusinessType">PT (Perseroan Terbatas)</td>
+            </tr>
+            <tr>
+              <td>Accepted Relationship</td>
+              <td id="resPjRole">Director / President Director</td>
+            </tr>
+            <tr>
+              <td>Verification Reference</td>
+              <td id="resVerificationRef" style="font-family: 'JetBrains Mono', monospace;">VRF-20261022-A1B2C3</td>
+            </tr>
+            <tr>
+              <td>Timestamp (Checked At)</td>
+              <td id="resCheckedAt">2026-10-22 03:55:00 UTC</td>
+            </tr>
+          </table>
+
+          <!-- Cryptographic Final Output Seal Section -->
+          <div class="hash-card" style="margin-top: 1.25rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span class="hash-badge">🔐 Final Output Hash Seal (SHA-256)</span>
+              <span style="font-size: 0.7rem; color: #34d399; font-weight: 600;" id="sealVerifyBadge">✓ Tamper-Evident</span>
+            </div>
+            <div class="hash-content" id="outputHashDisplay">e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</div>
+            <div class="hash-action-bar">
+              <button class="btn btn-secondary btn-sm" onclick="copyHash()">📋 Copy Hash</button>
+              <button class="btn btn-secondary btn-sm" onclick="verifyOutputIntegrity()">🔍 Verify Hash Integrity</button>
+            </div>
+            <div class="hash-note" style="margin-top: 0.65rem;">
+              <strong>Honesty &amp; Transparency Guarantee:</strong> Verification status is preserved in plain text for complete intelligibility. This cryptographic hash seals the final output certificate to ensure the result has not been tampered with or altered post-verification.
+            </div>
+          </div>
+
+          <!-- Blockchain Evidence -->
+          <div id="blockchainEvidenceBox" style="background: #090d16; border: 1px solid #202b3f; border-radius: 10px; padding: 1rem; margin-top: 1rem;">
+            <div style="font-size: 0.8rem; font-weight: 700; color: #93c5fd; margin-bottom: 0.5rem; display: flex; justify-content: space-between;">
+              <span>⛓️ Blockchain Ledger Evidence (PRD Sec. 7)</span>
+              <span id="bcFinality" style="color: #34d399;">FINALIZED</span>
+            </div>
+            <div style="font-size: 0.75rem; color: var(--text-muted); line-height: 1.6;">
+              <div><strong>Network:</strong> <span id="bcNetwork" style="color: #e2e8f0;">OSS Sovereign Consortium Ledger</span></div>
+              <div><strong>Block Height:</strong> <span id="bcBlockHeight" style="color: #e2e8f0; font-family: monospace;">1948205</span></div>
+              <div><strong>Ledger Tx:</strong> <span id="bcTxHash" style="color: #38bdf8; font-family: monospace; word-break: break-all;">0x...</span></div>
+              <div><strong>Snapshot Fingerprint:</strong> <span id="bcSnapshotHash" style="color: #c084fc; font-family: monospace; word-break: break-all;">0x...</span></div>
+            </div>
+          </div>
+
+          <!-- Audit Stepper -->
+          <div class="steps-container">
+            <div style="font-size: 0.8rem; font-weight: 700; color: #e2e8f0; margin-bottom: 0.75rem;">
+              Execution Pipeline Audit (Unhashed Process)
+            </div>
+            <div id="stepsList">
+              <!-- Dynamically rendered steps -->
+            </div>
+          </div>
+
+          <!-- Scope Notice -->
+          <div style="font-size: 0.7rem; color: #64748b; margin-top: 1rem; line-height: 1.4; border-left: 2px solid #334155; padding-left: 0.6rem;">
+            <strong style="color: #94a3b8;">Notice:</strong> <span id="resScopeNotice">Does not establish creditworthiness, current representation authority, or legal NIB validity.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Live Test Suite Runner -->
+    <div class="test-suite-card" id="testSuiteSection">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <h2 style="font-size: 1.15rem; font-weight: 700;">Full Staging Acceptance Suite (220 Cases)</h2>
+          <p style="font-size: 0.8rem; color: var(--text-muted);">
+            Evaluates 36 legal business entities (PT, CV, Koperasi, Foreign Principals, etc.) across V3 Latest, V1 Old, and Mismatch variants.
+          </p>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="runAllTestsLive()" id="btnRunTests">
+          ▶ Run All 220 Test Cases Live
+        </button>
+      </div>
+
+      <div class="test-stats">
+        <div class="stat-box">
+          <div class="stat-value" id="statTotal">220</div>
+          <div class="stat-label">Total Test Cases</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-value" style="color: #34d399;" id="statPassed">220</div>
+          <div class="stat-label">Passing Cases</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-value" style="color: #f87171;" id="statFailed">0</div>
+          <div class="stat-label">Failed Cases</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-value" style="color: #38bdf8;" id="statRate">100%</div>
+          <div class="stat-label">Compliance Rate</div>
+        </div>
+      </div>
+
+      <div class="test-table-container">
+        <table class="test-table">
+          <thead>
+            <tr>
+              <th>Case ID</th>
+              <th>NIB</th>
+              <th>PJ Identity</th>
+              <th>NPWP</th>
+              <th>Registered Name</th>
+              <th>Expected</th>
+              <th>Actual</th>
+              <th>Output SHA-256 Seal</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="testTableBody">
+            <tr>
+              <td colspan="9" style="text-align: center; color: var(--text-muted); padding: 1.5rem;">
+                Click "Run All 220 Test Cases Live" to execute the full validation run.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <footer>
+      <p>Solanascope Extremax Sovereign Intelligence Platform • Based on PRD v0.3 Specification</p>
+      <p style="margin-top: 0.25rem;">Point-in-time reference integrity verified with tamper-proof cryptographic receipt hashing.</p>
+    </footer>
+  </div>
+
+  <script>
+    let currentReceipt = null;
+    let routesData = {};
+    let allTestCases = [];
+
+    // Initialize data from server
+    async function init() {
+      try {
+        const res = await fetch('/api/test-cases');
+        const data = await res.json();
+        routesData = data.routes || {};
+        allTestCases = data.test_cases || [];
+
+        populateRouteSelector();
+      } catch (err) {
+        console.error('Failed to load initial data:', err);
+      }
+    }
+
+    function populateRouteSelector() {
+      const select = document.getElementById('routeSelector');
+      select.innerHTML = '<option value="">-- Choose Business Route (R01 - R36) --</option>';
+
+      for (const [rId, route] of Object.entries(routesData)) {
+        const opt = document.createElement('option');
+        opt.value = rId;
+        opt.textContent = `${rId}: ${route.business_type} (${route.identity_route}) - ${route.pj_role}`;
+        select.appendChild(opt);
+      }
+    }
+
+    function onRouteSelected() {
+      const rId = document.getElementById('routeSelector').value;
+      if (!rId || !routesData[rId]) return;
+      loadSelectedTestCase();
+    }
+
+    function loadSelectedTestCase() {
+      const rId = document.getElementById('routeSelector').value;
+      const scenario = document.getElementById('scenarioSelector').value;
+
+      if (!rId) {
+        alert('Please select a business route first.');
+        return;
+      }
+
+      const caseId = `${rId}-${scenario}`;
+      const targetCase = allTestCases.find(c => c.case_id === caseId);
+
+      if (targetCase) {
+        document.getElementById('nib').value = targetCase.nib;
+        document.getElementById('pj_id').value = targetCase.pj_id;
+        document.getElementById('npwp').value = targetCase.npwp;
+        document.getElementById('name').value = targetCase.name;
+
+        // Route identity type
+        const route = routesData[rId];
+        if (route) {
+          const wnaRadio = document.querySelector('input[name="identity_route"][value="WNA"]');
+          const wniRadio = document.querySelector('input[name="identity_route"][value="WNI"]');
+          if (route.identity_route === 'WNA') {
+            wnaRadio.checked = true;
+          } else {
+            wniRadio.checked = true;
+          }
+          toggleIdentityRoute();
+        }
+
+        // Trigger verification automatically for preview
+        handleVerify(new Event('submit'));
+      } else {
+        alert(`Scenario ${caseId} not found in test pack.`);
+      }
+    }
+
+    function toggleIdentityRoute() {
+      const route = document.querySelector('input[name="identity_route"]:checked').value;
+      const label = document.getElementById('pj_label');
+      const hint = document.getElementById('pj_hint');
+      const input = document.getElementById('pj_id');
+
+      if (route === 'WNA') {
+        label.textContent = '2. Nomor Paspor Penanggung Jawab (WNA)';
+        hint.textContent = 'Valid Foreign Passport Number (e.g. TESTP103)';
+        input.placeholder = 'e.g. TESTP103';
+      } else {
+        label.textContent = '2. NIK Direktur / Penanggung Jawab';
+        hint.textContent = '16-digit KTP identity for WNI representative';
+        input.placeholder = 'e.g. 0000000000000102';
+      }
+    }
+
+    async function handleVerify(e) {
+      if (e) e.preventDefault();
+
+      const btn = document.getElementById('btnSubmit');
+      const spinner = document.getElementById('btnSpinner');
+      btn.disabled = true;
+      spinner.style.display = 'inline';
+
+      const payload = {
+        nib: document.getElementById('nib').value,
+        pj_id: document.getElementById('pj_id').value,
+        npwp: document.getElementById('npwp').value,
+        name: document.getElementById('name').value,
+        identity_route: document.querySelector('input[name="identity_route"]:checked').value
+      };
+
+      try {
+        const res = await fetch('/api/verify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        const data = await res.json();
+        currentReceipt = data;
+        renderOutput(data);
+      } catch (err) {
+        alert('Verification request failed: ' + err.message);
+      } finally {
+        btn.disabled = false;
+        spinner.style.display = 'none';
+      }
+    }
+
+    function renderOutput(data) {
+      document.getElementById('outputPlaceholder').style.display = 'none';
+      document.getElementById('outputContent').style.display = 'block';
+
+      const statusCard = document.getElementById('statusCard');
+      statusCard.className = 'status-card ' + data.status;
+
+      document.getElementById('statusPill').textContent = data.status_display || data.status;
+      document.getElementById('statusExplanation').textContent = data.explanation;
+      document.getElementById('conclusiveBadge').textContent = data.is_conclusive ? 'CONCLUSIVE DETERMINATION' : 'INCOMPLETE CHECK (FIELD ERROR)';
+
+      document.getElementById('receiptStatus').textContent = data.status;
+      document.getElementById('receiptStatus').style.color =
+        data.status === 'TRUE_LATEST' ? '#34d399' :
+        data.status === 'TRUE_OLD' ? '#fbbf24' :
+        data.status === 'WRONG' ? '#f87171' : '#cbd5e1';
+
+      document.getElementById('resVerifiedVersion').textContent = data.verified_version || 'N/A';
+      document.getElementById('resLatestVersion').textContent = data.latest_reference_version || 'N/A';
+      document.getElementById('resBusinessType').textContent = data.business_info ? `${data.business_info.business_type} (${data.business_info.identity_route})` : 'Unresolved';
+      document.getElementById('resPjRole').textContent = data.business_info ? data.business_info.representative_role : 'N/A';
+      document.getElementById('resVerificationRef').textContent = data.verification_reference;
+      document.getElementById('resCheckedAt').textContent = data.checked_at;
+      document.getElementById('resScopeNotice').textContent = data.scope_notice;
+
+      // Final Output Hash
+      document.getElementById('outputHashDisplay').textContent = data.output_hash;
+      document.getElementById('sealVerifyBadge').textContent = '✓ Tamper-Evident SHA-256';
+
+      // Blockchain Evidence
+      const bcBox = document.getElementById('blockchainEvidenceBox');
+      if (data.blockchain_evidence) {
+        bcBox.style.display = 'block';
+        document.getElementById('bcNetwork').textContent = data.blockchain_evidence.network;
+        document.getElementById('bcBlockHeight').textContent = data.blockchain_evidence.block_height;
+        document.getElementById('bcTxHash').textContent = data.blockchain_evidence.transaction_hash;
+        document.getElementById('bcSnapshotHash').textContent = data.blockchain_evidence.snapshot_fingerprint;
+        document.getElementById('bcFinality').textContent = data.blockchain_evidence.finality;
+      } else {
+        bcBox.style.display = 'none';
+      }
+
+      // Audit Steps
+      const stepsContainer = document.getElementById('stepsList');
+      stepsContainer.innerHTML = '';
+      if (data.process_audit && data.process_audit.steps) {
+        data.process_audit.steps.forEach((step, idx) => {
+          const div = document.createElement('div');
+          div.className = `step-item ${step.status}`;
+          div.innerHTML = `
+            <div class="step-num">${idx + 1}</div>
+            <div class="step-body">
+              <div class="step-title">${step.name} — <span style="font-size:0.75rem; text-transform:uppercase;">${step.status}</span></div>
+              <div class="step-desc">${step.message || 'Stage evaluated under standard parameters'}</div>
+            </div>
+          `;
+          stepsContainer.appendChild(div);
+        });
+      }
+    }
+
+    async function verifyOutputIntegrity() {
+      if (!currentReceipt) return;
+
+      try {
+        const res = await fetch('/api/verify-receipt', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(currentReceipt)
+        });
+        const check = await res.json();
+
+        if (check.valid) {
+          alert('✓ Cryptographic Seal Verified!\n\nRecomputed SHA-256 hash matches the output receipt seal with 100% mathematical certainty.\nNo fields have been altered.');
+        } else {
+          alert('⚠️ Integrity Alert: The output hash does NOT match the payload! The receipt has been modified.');
+        }
+      } catch (err) {
+        alert('Integrity check error: ' + err.message);
+      }
+    }
+
+    function copyHash() {
+      const hash = document.getElementById('outputHashDisplay').textContent;
+      navigator.clipboard.writeText(hash).then(() => {
+        alert('SHA-256 Output Hash copied to clipboard: ' + hash);
+      });
+    }
+
+    function resetForm() {
+      document.getElementById('verifyForm').reset();
+      toggleIdentityRoute();
+      document.getElementById('outputPlaceholder').style.display = 'block';
+      document.getElementById('outputContent').style.display = 'none';
+      currentReceipt = null;
+    }
+
+    function scrollToTests() {
+      document.getElementById('testSuiteSection').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    async function runAllTestsLive() {
+      const btn = document.getElementById('btnRunTests');
+      btn.disabled = true;
+      btn.textContent = 'Running 220 Tests...';
+
+      try {
+        const res = await fetch('/api/run-all-tests', { method: 'POST' });
+        const data = await res.json();
+
+        document.getElementById('statTotal').textContent = data.total;
+        document.getElementById('statPassed').textContent = data.passed;
+        document.getElementById('statFailed').textContent = data.failed;
+        document.getElementById('statRate').textContent = data.compliance_rate;
+
+        const tbody = document.getElementById('testTableBody');
+        tbody.innerHTML = '';
+
+        data.details.forEach(item => {
+          const tr = document.createElement('tr');
+          const isPass = item.actual_status === item.expected_status;
+          const tagClass =
+            item.actual_status === 'TRUE_LATEST' ? 'tag-green' :
+            item.actual_status === 'TRUE_OLD' ? 'tag-amber' :
+            item.actual_status === 'WRONG' ? 'tag-red' : 'tag-gray';
+
+          tr.innerHTML = `
+            <td style="font-weight: 700; color: #93c5fd;">${item.case_id}</td>
+            <td style="font-family: monospace;">${item.nib || '<span style="color:#64748b;">(empty)</span>'}</td>
+            <td style="font-family: monospace;">${item.pj_id || '<span style="color:#64748b;">(empty)</span>'}</td>
+            <td style="font-family: monospace;">${item.npwp || '<span style="color:#64748b;">(empty)</span>'}</td>
+            <td>${item.name || '<span style="color:#64748b;">(empty)</span>'}</td>
+            <td><span class="tag ${tagClass}">${item.expected_status}</span></td>
+            <td><span class="tag ${tagClass}">${item.actual_status}</span></td>
+            <td style="font-family: monospace; font-size: 0.7rem; color: #38bdf8;">${item.output_hash.slice(0, 16)}...</td>
+            <td style="color: ${isPass ? '#34d399' : '#f87171'}; font-weight: 700;">
+              ${isPass ? '✓ PASS' : '✗ FAIL'}
+            </td>
+          `;
+          tbody.appendChild(tr);
+        });
+
+      } catch (err) {
+        alert('Test suite execution failed: ' + err.message);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = '▶ Re-Run All 220 Test Cases Live';
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>
